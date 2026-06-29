@@ -3,86 +3,63 @@
 @theme {
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-  --color-brand-obsidian: #0d0d0d;
-  --color-brand-alabaster: #f5f5f3;
-  --color-brand-gold: #d4af37;
-  --color-brand-muted: #8e8e8e;
+
+  /* ── Velvet Library — Heritage Interior Palette ── */
+  --color-bg-deep:    #0b1a0d;   /* mottled dark forest background  */
+  --color-bg-mid:     #0f2415;   /* slightly lifted forest           */
+  --color-forest:     #1e4d30;   /* Forest Green swatch              */
+  --color-oxblood:    #7a1c1c;   /* Oxblood Red swatch               */
+  --color-walnut:     #4d2b0f;   /* Walnut Brown swatch              */
+  --color-brass:      #b8952a;   /* Antique Brass swatch             */
+  --color-brass-lt:   #d4af5a;   /* lighter brass highlight          */
+  --color-parchment:  #f0ddb8;   /* Parchment Cream text             */
+  --color-parch-dim:  #c8b898;   /* dimmed parchment                 */
 }
 
-/* Custom Scrollbar for premium aesthetic */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-::-webkit-scrollbar-track {
-  background: #0d0d0d;
-}
-::-webkit-scrollbar-thumb {
-  background: #222222;
-  border-radius: 0px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #333333;
-}
+/* ── Scrollbar ── */
+::-webkit-scrollbar         { width: 5px; height: 5px; }
+::-webkit-scrollbar-track   { background: #0b1a0d; }
+::-webkit-scrollbar-thumb   { background: #1e4d30; }
+::-webkit-scrollbar-thumb:hover { background: #2a6640; }
 
-/* Global Reset */
-html {
-  scroll-behavior: smooth;
-  background-color: #0a0612;
-}
+/* ── Global reset ── */
+html { scroll-behavior: smooth; background-color: #0b1a0d; }
 
 body {
-  background-color: #0a0612;
-  color: #f5f5f3;
+  background-color: #0b1a0d;
+  color: #f0ddb8;
   overflow-x: hidden;
   font-family: var(--font-sans);
 }
 
-/* Text selections */
-::selection {
-  background-color: #f5f5f3;
-  color: #0a0612;
-}
+::selection { background-color: #b8952a; color: #0b1a0d; }
 
-/* Background grain/noise overlay for high-end feel */
+/* ── Film grain overlay ── */
 .bg-grain {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  content: "";
-  opacity: 0.025;
-  pointer-events: none;
-  z-index: 9999;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0.05; pointer-events: none; z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Editorial line grid layout background */
+/* ── Editorial gold grid ── */
 .editorial-grid {
   background-size: 80px 80px;
-  background-image: 
-    linear-gradient(to right, rgba(245, 245, 243, 0.015) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(245, 245, 243, 0.015) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right,  rgba(184,149,42,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(184,149,42,0.05) 1px, transparent 1px);
 }
 
-/* Custom animation utils */
+/* ── Marquee ── */
 @keyframes marquee {
-  0% { transform: translateX(0%); }
+  0%   { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
 }
-
 .marquee-content {
-  display: flex;
-  width: max-content;
+  display: flex; width: max-content;
   animation: marquee 30s linear infinite;
 }
+.marquee-content:hover { animation-play-state: paused; }
 
-.marquee-content:hover {
-  animation-play-state: paused;
-}
-
-/* Smooth transitions */
-.transition-luxury {
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
+/* ── Premium transition ── */
+.transition-luxury { transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
