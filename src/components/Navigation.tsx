@@ -66,12 +66,13 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
           
           {/* Logo */}
-          <a 
-            href="#hero" 
+          <a
+            href="#hero"
             onClick={(e) => handleLinkClick(e, '#hero')}
-            className="font-serif text-xl tracking-[0.25em] font-light uppercase text-[#f5f5f3] hover:opacity-80 transition-opacity"
+            className="font-serif text-xl tracking-[0.25em] font-light uppercase transition-opacity hover:opacity-80"
+            style={{ background: 'linear-gradient(90deg, #a78bfa, #f472b6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
           >
-            Hamza JAFFAR
+            ATELIER JAFFAR
           </a>
 
           {/* Desktop Navigation */}
@@ -87,7 +88,8 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
                 {activeSection === item.id && (
                   <motion.span
                     layoutId="activeIndicator"
-                    className="absolute bottom-0 left-0 w-full h-[1px] bg-[#f5f5f3]"
+                    className="absolute bottom-0 left-0 w-full h-[1px]"
+                    style={{ background: 'linear-gradient(90deg, #a78bfa, #f472b6)' }}
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -101,9 +103,9 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
             className="flex flex-col space-y-1.5 items-end justify-center w-8 h-8 group relative z-50 focus:outline-none"
             aria-label="Toggle Menu"
           >
-            <span className={`h-[1px] bg-[#f5f5f3] transition-all duration-500 ${isOpen ? 'w-6 rotate-45 translate-y-2' : 'w-6'}`} />
-            <span className={`h-[1px] bg-[#f5f5f3] transition-all duration-500 ${isOpen ? 'w-0 opacity-0' : 'w-4 group-hover:w-6'}`} />
-            <span className={`h-[1px] bg-[#f5f5f3] transition-all duration-500 ${isOpen ? 'w-6 -rotate-45 -translate-y-1.5' : 'w-5'}`} />
+            <span className={`h-[1px] transition-all duration-500 ${isOpen ? 'w-6 rotate-45 translate-y-2' : 'w-6'}`} style={{ background: 'linear-gradient(90deg, #a78bfa, #f472b6)' }} />
+            <span className={`h-[1px] transition-all duration-500 ${isOpen ? 'w-0 opacity-0' : 'w-4 group-hover:w-6'}`} style={{ background: 'linear-gradient(90deg, #f472b6, #22d3ee)' }} />
+            <span className={`h-[1px] transition-all duration-500 ${isOpen ? 'w-6 -rotate-45 -translate-y-1.5' : 'w-5'}`} style={{ background: 'linear-gradient(90deg, #22d3ee, #a78bfa)' }} />
           </button>
         </div>
       </header>
@@ -134,6 +136,7 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
               <button
                 onClick={() => setIsOpen(false)}
                 className="absolute top-8 right-8 text-[#f5f5f3]/60 hover:text-[#f5f5f3] focus:outline-none z-50 cursor-pointer p-2 hover:rotate-90 transition-transform duration-300"
+                style={{ background: 'linear-gradient(90deg, #a78bfa, #f472b6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
                 aria-label="Close Menu"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -145,11 +148,11 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
               <div className="absolute inset-0 bg-grain pointer-events-none opacity-5" />
 
               {/* Top part / coordinates info */}
-              <div className="pt-8 border-b border-[#f5f5f3]/10 pb-8">
-                <span className="font-sans text-[10px] tracking-[0.25em] text-[#f5f5f3]/40 uppercase block mb-1">
-                  Hamza Coordinates
+              <div className="pt-8 pb-8" style={{ borderBottom: '1px solid rgba(167,139,250,0.2)' }}>
+                <span className="font-sans text-[10px] tracking-[0.25em] uppercase block mb-1" style={{ color: '#a78bfa', opacity: 0.7 }}>
+                  Atelier Coordinates
                 </span>
-                <span className="font-serif italic text-sm text-[#f5f5f3]/70">
+                <span className="font-serif italic text-sm" style={{ color: 'rgba(245,245,243,0.8)' }}>
                   48.8566° N, 2.3522° E — Paris, FR
                 </span>
               </div>

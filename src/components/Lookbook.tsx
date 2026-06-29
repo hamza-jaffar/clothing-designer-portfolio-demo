@@ -10,9 +10,12 @@ interface CollectionItem {
   gsm: string;
   notes: string;
   silhouette: string;
-  // SVG drawing paths to animate
   sketchPaths: string[];
   viewBox: string;
+  // Per-card accent colours
+  accent: string;
+  accentGlow: string;
+  sketchColor: string;
 }
 
 const collections: CollectionItem[] = [
@@ -27,11 +30,14 @@ const collections: CollectionItem[] = [
     notes: "Utilizes historical Parisian canvas padding inside the chest area for rigid structure.",
     viewBox: "0 0 100 100",
     sketchPaths: [
-      "M 15 10 L 85 10 L 85 45 L 65 45 L 50 75 L 35 45 L 15 45 Z", // Tailored coat outline simplified
-      "M 35 10 L 35 45 M 65 10 L 65 45", // Dart guides
-      "M 50 10 L 50 75", // Center line
-      "M 15 25 L 35 25 M 85 25 L 65 25" // Pocket placements
-    ]
+      "M 15 10 L 85 10 L 85 45 L 65 45 L 50 75 L 35 45 L 15 45 Z",
+      "M 35 10 L 35 45 M 65 10 L 65 45",
+      "M 50 10 L 50 75",
+      "M 15 25 L 35 25 M 85 25 L 65 25"
+    ],
+    accent: "from-violet-500 to-purple-700",
+    accentGlow: "rgba(139,92,246,0.25)",
+    sketchColor: "#a78bfa"
   },
   {
     id: 2,
@@ -44,10 +50,13 @@ const collections: CollectionItem[] = [
     notes: "French-seamed interior edges to maintain absolute transparency under light.",
     viewBox: "0 0 100 100",
     sketchPaths: [
-      "M 30 10 C 40 12, 60 12, 70 10 C 75 35, 75 65, 80 90 C 60 85, 40 85, 20 90 C 25 65, 25 35, 30 10 Z", // Flowing gown shape
-      "M 30 35 C 45 40, 55 40, 70 35", // Waist gather guidelines
-      "M 25 50 C 35 55, 65 55, 75 50" // Draped bias guidelines
-    ]
+      "M 30 10 C 40 12, 60 12, 70 10 C 75 35, 75 65, 80 90 C 60 85, 40 85, 20 90 C 25 65, 25 35, 30 10 Z",
+      "M 30 35 C 45 40, 55 40, 70 35",
+      "M 25 50 C 35 55, 65 55, 75 50"
+    ],
+    accent: "from-pink-500 to-rose-600",
+    accentGlow: "rgba(236,72,153,0.25)",
+    sketchColor: "#f472b6"
   },
   {
     id: 3,
@@ -60,11 +69,14 @@ const collections: CollectionItem[] = [
     notes: "Treated with water-repellent biological wax layer for technical performance.",
     viewBox: "0 0 100 100",
     sketchPaths: [
-      "M 20 20 L 40 10 L 60 10 L 80 20 L 75 80 L 25 80 Z", // Technical vest outline
-      "M 50 10 L 50 80", // Center zipper
-      "M 30 35 H 45 V 50 H 30 Z M 70 35 H 55 V 50 H 70 Z", // Double tactical pockets
-      "M 25 80 C 35 83, 65 83, 75 80" // Bungee cord adjustments
-    ]
+      "M 20 20 L 40 10 L 60 10 L 80 20 L 75 80 L 25 80 Z",
+      "M 50 10 L 50 80",
+      "M 30 35 H 45 V 50 H 30 Z M 70 35 H 55 V 50 H 70 Z",
+      "M 25 80 C 35 83, 65 83, 75 80"
+    ],
+    accent: "from-cyan-500 to-sky-600",
+    accentGlow: "rgba(6,182,212,0.25)",
+    sketchColor: "#22d3ee"
   },
   {
     id: 4,
@@ -77,34 +89,40 @@ const collections: CollectionItem[] = [
     notes: "Knitted using standard 12-gauge tensioning for heavy weight and dense texture.",
     viewBox: "0 0 100 100",
     sketchPaths: [
-      "M 15 15 L 30 10 L 70 10 L 85 15 L 80 85 L 20 85 Z", // Oversized sweater outline
-      "M 30 10 L 30 25 C 40 28, 60 28, 70 25 L 70 10", // Neck collar shape
-      "M 15 15 L 25 45 M 85 15 L 75 45", // Slanted shoulder seam lines
-      "M 20 75 H 80" // Heavy ribbed hem border
-    ]
+      "M 15 15 L 30 10 L 70 10 L 85 15 L 80 85 L 20 85 Z",
+      "M 30 10 L 30 25 C 40 28, 60 28, 70 25 L 70 10",
+      "M 15 15 L 25 45 M 85 15 L 75 45",
+      "M 20 75 H 80"
+    ],
+    accent: "from-amber-400 to-orange-500",
+    accentGlow: "rgba(251,191,36,0.25)",
+    sketchColor: "#fbbf24"
   }
 ];
 
 export const Lookbook: React.FC = () => {
   const lineAnimation = {
     hidden: { pathLength: 0, opacity: 0 },
-    visible: { 
-      pathLength: 1, 
-      opacity: 0.25,
-      transition: { duration: 2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } 
+    visible: {
+      pathLength: 1,
+      opacity: 0.6,
+      transition: { duration: 2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }
     }
   };
 
   return (
-    <section 
-      id="lookbook" 
-      className="bg-[#0d0d0d] py-32 px-6 md:px-12 max-w-7xl mx-auto border-t border-[#f5f5f3]/10"
+    <section
+      id="lookbook"
+      className="py-32 px-6 md:px-12 max-w-7xl mx-auto"
+      style={{ borderTop: '1px solid rgba(167,139,250,0.15)' }}
     >
-      
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 space-y-6 md:space-y-0">
         <div>
-          <span className="font-sans text-xs tracking-[0.4em] uppercase text-[#f5f5f3]/40 block mb-3">
+          <span
+            className="font-sans text-xs tracking-[0.4em] uppercase block mb-3 font-medium"
+            style={{ background: 'linear-gradient(90deg, #a78bfa, #f472b6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
+          >
             01 / RUNWAY TRACK
           </span>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-[#f5f5f3] uppercase tracking-wide">
@@ -119,47 +137,51 @@ export const Lookbook: React.FC = () => {
       {/* Lookbook Asymmetric Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24 md:gap-y-36">
         {collections.map((item, idx) => {
-          // Asymmetrical layout offsets: Alternate padding-top or margins for staggered feel
           const isEven = idx % 2 === 1;
-
           return (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number,number,number,number] }}
               className={`flex flex-col ${isEven ? 'md:mt-24' : ''} group`}
             >
-              
-              {/* Image Container with scale and details reveals */}
-              <div className="relative aspect-[3/4] w-full overflow-hidden border border-[#f5f5f3]/10 bg-black mb-8">
-                
+              {/* Image Container */}
+              <div
+                className="relative aspect-[3/4] w-full overflow-hidden mb-8 transition-all duration-700"
+                style={{ border: `1px solid ${item.accentGlow}`, boxShadow: `0 0 0 0 ${item.accentGlow}` }}
+              >
+                {/* Coloured top gradient bar */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${item.accent} z-30`} />
+
                 {/* Visual Image */}
-                <motion.div 
+                <motion.div
                   className="w-full h-full"
                   whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number,number,number,number] }}
                 >
-                  <img 
-                    src={item.image} 
+                  <img
+                    src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover filter grayscale contrast-110 brightness-90 group-hover:brightness-95 transition-all duration-700"
+                    className="w-full h-full object-cover brightness-90 group-hover:brightness-100 transition-all duration-700"
+                  />
+                  {/* Subtle coloured wash on hover */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700"
+                    style={{ background: `linear-gradient(180deg, ${item.accentGlow} 0%, transparent 60%)` }}
                   />
                 </motion.div>
 
-                {/* Micro Sketch Overlay (traces when image is hovered or visible) */}
-                <div className="absolute top-4 right-4 w-28 h-28 bg-[#0d0d0d]/80 backdrop-blur-sm p-3 border border-[#f5f5f3]/10 pointer-events-none hidden sm:block">
-                  <span className="block text-[7px] tracking-widest text-[#f5f5f3]/35 uppercase mb-1">
+                {/* Sketch Overlay */}
+                <div
+                  className="absolute top-4 right-4 w-28 h-28 backdrop-blur-sm p-3 pointer-events-none hidden sm:block"
+                  style={{ background: 'rgba(10,6,18,0.85)', border: `1px solid ${item.accentGlow}` }}
+                >
+                  <span className="block text-[7px] tracking-widest uppercase mb-1" style={{ color: item.sketchColor }}>
                     PATTERN SCHEMATIC
                   </span>
-                  <svg 
-                    viewBox={item.viewBox} 
-                    className="w-full h-20 text-[#f5f5f3] opacity-40"
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="0.5"
-                  >
+                  <svg viewBox={item.viewBox} className="w-full h-20" fill="none" stroke={item.sketchColor} strokeWidth="0.8">
                     {item.sketchPaths.map((path, pIdx) => (
                       <motion.path
                         key={pIdx}
@@ -173,57 +195,57 @@ export const Lookbook: React.FC = () => {
                   </svg>
                 </div>
 
-                {/* Hover Slider Details Panel (from bottom) */}
-                <div className="absolute inset-x-0 bottom-0 bg-[#0d0d0d]/90 backdrop-blur-md border-t border-[#f5f5f3]/10 p-6 md:p-8 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[0.16,1,0.3,1] z-20">
+                {/* Hover Details Panel */}
+                <div
+                  className="absolute inset-x-0 bottom-0 backdrop-blur-md p-6 md:p-8 translate-y-full group-hover:translate-y-0 transition-transform duration-700 z-20"
+                  style={{ background: 'rgba(10,6,18,0.92)', borderTop: `1px solid ${item.accentGlow}` }}
+                >
                   <div className="flex justify-between items-baseline mb-4">
-                    <span className="font-sans text-[10px] tracking-widest text-[#f5f5f3]/50 uppercase">
-                      FABRIC MATRIX
-                    </span>
-                    <span className="font-mono text-[10px] text-[#d4af37] tracking-wider uppercase font-semibold">
+                    <span className="font-sans text-[10px] tracking-widest text-[#f5f5f3]/50 uppercase">FABRIC MATRIX</span>
+                    <span className="font-mono text-[10px] tracking-wider uppercase font-semibold" style={{ color: item.sketchColor }}>
                       {item.gsm}
                     </span>
                   </div>
-                  <h4 className="font-serif text-2xl font-light text-[#f5f5f3] mb-2 uppercase">
-                    {item.fabric}
-                  </h4>
-                  <p className="font-sans text-xs text-[#f5f5f3]/70 tracking-wide leading-relaxed mb-4">
-                    {item.silhouette}
-                  </p>
-                  <div className="border-t border-[#f5f5f3]/10 pt-4">
-                    <span className="block text-[8px] tracking-[0.2em] text-[#f5f5f3]/40 uppercase mb-1">
+                  <h4 className="font-serif text-2xl font-light text-[#f5f5f3] mb-2 uppercase">{item.fabric}</h4>
+                  <p className="font-sans text-xs text-[#f5f5f3]/70 tracking-wide leading-relaxed mb-4">{item.silhouette}</p>
+                  <div className="pt-4" style={{ borderTop: `1px solid ${item.accentGlow}` }}>
+                    <span className="block text-[8px] tracking-[0.2em] uppercase mb-1" style={{ color: item.sketchColor, opacity: 0.7 }}>
                       ATELIER DESIGN NOTE
                     </span>
-                    <p className="font-sans text-[11px] italic text-[#f5f5f3]/50">
-                      "{item.notes}"
-                    </p>
+                    <p className="font-sans text-[11px] italic text-[#f5f5f3]/50">"{item.notes}"</p>
                   </div>
                 </div>
               </div>
 
-              {/* Title & Metadata below card */}
+              {/* Title Row */}
               <div className="flex justify-between items-start">
                 <div>
-                  <span className="font-sans text-[9px] tracking-[0.3em] text-[#f5f5f3]/40 uppercase block mb-1">
+                  <span className="font-sans text-[9px] tracking-[0.3em] uppercase block mb-1" style={{ color: item.sketchColor, opacity: 0.7 }}>
                     {item.subtitle}
                   </span>
-                  <h3 className="font-serif text-3xl font-light text-[#f5f5f3] tracking-wide uppercase transition-colors group-hover:text-[#d4af37]">
-                    {item.title}
+                  <h3
+                    className="font-serif text-3xl font-light tracking-wide uppercase transition-all duration-500"
+                    style={{ color: '#f5f5f3' }}
+                  >
+                    <span className="group-hover:opacity-0 transition-opacity duration-300 absolute">{item.title}</span>
+                    <span style={{ background: `linear-gradient(90deg, ${item.sketchColor}, #f5f5f3)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                      {item.title}
+                    </span>
                   </h3>
                 </div>
-                
-                {/* Arrow detail */}
-                <div className="w-8 h-8 rounded-full border border-[#f5f5f3]/10 flex items-center justify-center opacity-40 group-hover:opacity-100 group-hover:border-[#f5f5f3] transition-luxury mt-2">
+                <div
+                  className="w-8 h-8 rounded-full flex items-center justify-center mt-2 opacity-40 group-hover:opacity-100 transition-all duration-500"
+                  style={{ border: `1px solid ${item.accentGlow}`, boxShadow: `0 0 12px ${item.accentGlow}` }}
+                >
                   <svg className="w-3.5 h-3.5 text-[#f5f5f3] transform -rotate-45 group-hover:rotate-0 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </div>
               </div>
-
             </motion.div>
           );
         })}
       </div>
-
     </section>
   );
 };

@@ -33,7 +33,13 @@ function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#0d0d0d] text-[#f5f5f3] overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#0a0612] text-[#f5f5f3] overflow-x-hidden transition-colors duration-1000">
+      {/* Dynamic luxury light glow spots (auroras) for premium color depth */}
+      <div className="absolute top-[5%] left-[10%] w-[45vw] h-[45vw] rounded-full bg-gradient-to-br from-[#7000ff]/12 via-[#be185d]/12 to-transparent filter blur-[120px] pointer-events-none z-0 animate-pulse duration-[10s]" />
+      <div className="absolute top-[35%] right-[5%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-bl from-[#00c9ff]/10 via-[#d4af37]/10 to-transparent filter blur-[150px] pointer-events-none z-0 animate-pulse duration-[12s]" />
+      <div className="absolute bottom-[25%] left-[5%] w-[45vw] h-[45vw] rounded-full bg-gradient-to-tr from-[#ec4899]/12 via-[#7000ff]/12 to-transparent filter blur-[130px] pointer-events-none z-0" />
+      <div className="absolute bottom-[5%] right-[15%] w-[35vw] h-[35vw] rounded-full bg-gradient-to-t from-[#00f2fe]/10 to-transparent filter blur-[100px] pointer-events-none z-0" />
+
       {/* Dynamic luxury film-grain texture overlay */}
       <div className="bg-grain" />
 
