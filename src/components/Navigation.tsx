@@ -130,13 +130,24 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
               exit="exit"
               className="fixed top-0 right-0 w-full sm:w-[480px] h-full bg-[#0d0d0d] border-l border-[#f5f5f3]/10 z-45 p-12 md:p-20 flex flex-col justify-between"
             >
+              {/* Close Button inside Drawer */}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="absolute top-8 right-8 text-[#f5f5f3]/60 hover:text-[#f5f5f3] focus:outline-none z-50 cursor-pointer p-2 hover:rotate-90 transition-transform duration-300"
+                aria-label="Close Menu"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
               {/* Background pattern inside menu */}
               <div className="absolute inset-0 bg-grain pointer-events-none opacity-5" />
 
               {/* Top part / coordinates info */}
               <div className="pt-8 border-b border-[#f5f5f3]/10 pb-8">
                 <span className="font-sans text-[10px] tracking-[0.25em] text-[#f5f5f3]/40 uppercase block mb-1">
-                  Atelier Coordinates
+                  Hamza Coordinates
                 </span>
                 <span className="font-serif italic text-sm text-[#f5f5f3]/70">
                   48.8566° N, 2.3522° E — Paris, FR
@@ -178,14 +189,14 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
                     Inquiries
                   </span>
                   <a 
-                    href="mailto:atelier@jaffar.com" 
+                    href="mailto:Hamza@jaffar.com" 
                     className="text-xs tracking-wider text-[#f5f5f3]/70 hover:text-[#f5f5f3] transition-colors"
                   >
-                    atelier@jaffar.com
+                    Hamza@jaffar.com
                   </a>
                 </div>
                 <span className="font-sans text-[9px] tracking-widest text-[#f5f5f3]/20">
-                  © 2026 ATELIER JAFFAR
+                  © 2026 Hamza JAFFAR
                 </span>
               </div>
             </motion.div>
